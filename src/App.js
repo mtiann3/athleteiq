@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Protected from "./components/Protected";
+import { AuthContextProvider } from "./context/AuthContext";
+import Account from "./pages/Account";
+import Home from "./pages/Home";
+import Signin from "./pages/Signin";
+import Progress from "./pages/Progress";
+import Dashboard from "./pages/Dashboard";
+import Feedback from "./pages/Feedback";
+import Groups from "./pages/Groups";
+import Goals from "./pages/Goals";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AuthContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route
+            path="/account"
+            element={
+              <Protected>
+                <Account />
+              </Protected>
+            }
+          />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/goals" element={<Goals />} />
+          <Route path="/groups" element={<Groups />} />
+          <Route path="/feedback" element={<Feedback />} />
+
+        </Routes>
+      </AuthContextProvider>
     </div>
   );
 }
