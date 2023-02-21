@@ -13,7 +13,9 @@ const Navbar = () => {
   console.log(loggedIn);
   //user !=null will be true if logged in and false if not
   const navigate = useNavigate();
-
+  useEffect(()=>{
+    console.log("mounted")
+  }, [])
   const handleSignOut = async () => {
     try {
       await logOut();

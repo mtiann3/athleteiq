@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import WeightModel from "../components/WeightModel";
 import PlyoModel from "../components/PlyometricModel";
 import ListView from "../components/ListView";
 import Graph from "../components/Graph";
-import { UserAuth } from '../context/AuthContext';
-
+import { UserAuth } from "../context/AuthContext";
+import { useExerciseFetch } from "../hooks/useExerciseFetch";
 
 const Progress = () => {
   const { logOut, user } = UserAuth();
 
-  // api for exercises
-  const getExercise = () => {
-    const headers = { "X-Api-Key": "2kLFNSocLGSrUDczknoQww==bdwR08KZB6MeqpXL" };
-    fetch("https://api.api-ninjas.com/v1/exercises?muscle=triceps", { headers })
-      .then((response) => response.json())
-      .then((response) => console.log(response));
-    console.log(user?.email)
-  };
+  const [count, setCount] = useState(() =>
+    (JSON.parse(localStorage.getItem("count")))
+  );
+  const { data, loading } = useExerciseFetch(
+    `http://numbersapi.com/${count}/trivia`
+  );
+
+  useEffect(() => {
+    localStorage.setItem("count", JSON.stringify(count));
+  }, [count]);
+
   return (
     <div className="w-auto h-screen p-10  m-auto bg-[#46433f]">
       <div className="p-10">
@@ -32,7 +35,11 @@ const Progress = () => {
           <ListView />
           <Graph className="w-max z-0" />
         </div>
-        <button onClick={getExercise}>Exercise API</button>
+        <div>
+          <div>{!data ? "loading..." : data}</div>
+          <div>count: {count}</div>
+          <button onClick={() => setCount((c) => c + 1)}>increment</button>
+        </div>
       </div>
     </div>
   );
