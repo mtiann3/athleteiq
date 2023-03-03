@@ -10,11 +10,11 @@ const Navbar = () => {
   const loggedIn = user != null;
 
   const handleClick = () => setNav(!nav);
-  console.log(loggedIn);
+  // console.log(loggedIn);
   //user !=null will be true if logged in and false if not
   const navigate = useNavigate();
   useEffect(()=>{
-    console.log("mounted")
+    // console.log("mounted")
   }, [])
   const handleSignOut = async () => {
     try {

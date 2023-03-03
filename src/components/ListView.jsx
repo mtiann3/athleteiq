@@ -1,32 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ListView = () => {
-  const arr = ["Hi", "Hello", "bob", "yes"];
-
+const ListView = ({ data }) => {
+  const componentArray = [];
+  // console.log(data);
+  const handleClick = (name) => {
+    // console.log(name);
+  };
   const getItem = () => {
-    for (var i = 0; i < arr.length; i++) {
-      return (
-        <ul class="divide-y-2 divide-gray-100">
-          <li class="p-3 hover:bg-blue-600 hover:text-blue-200">10-Yard Fly</li>
-          <li class="p-3 hover:bg-blue-600 hover:text-blue-200">10-Yard Fly</li>
-          <li class="p-3 hover:bg-blue-600 hover:text-blue-200">10-Yard Fly</li>
-          <li class="p-3 hover:bg-blue-600 hover:text-blue-200">10-Yard Fly</li>
-        </ul>
+    for (var i = 0; i < data.length; i++) {
+      componentArray.push(
+        <li
+          onClick={() => handleClick(data[i])}
+          class="p-3 hover:bg-blue-600 hover:text-blue-200"
+        >
+          {data[i]}
+        </li>
       );
     }
+    return componentArray;
   };
 
   return (
     <div class="w-full bg-white rounded-lg shadow-lg lg:w-1/3">
-      <ul class="divide-y-2 divide-gray-100">
-        {/* <li class="p-3 hover:bg-blue-600 hover:text-blue-200">10-Yard Fly</li>
-        <li class="p-3 hover:bg-blue-600 hover:text-blue-200">10-Yard Fly</li>
-        <li class="p-3 hover:bg-blue-600 hover:text-blue-200">10-Yard Fly</li>
-        <li class="p-3 hover:bg-blue-600 hover:text-blue-200">10-Yard Fly</li> */}
-        
-      </ul>
+      <ul class="divide-y-2 divide-gray-100 inline">{getItem()}</ul>
     </div>
   );
+  // return state;
 };
-
 export default ListView;

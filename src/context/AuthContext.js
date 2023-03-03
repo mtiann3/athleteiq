@@ -68,7 +68,7 @@ export const AuthContextProvider = ({ children }) => {
         }
         console.log("User", currentUser);
       }else{
-        console.log("User already exists")
+        // console.log("User already exists")
       }
     });
     return () => {
