@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import WeightModel from "../components/WeightModel";
 import PlyoModel from "../components/PlyometricModel";
 import ListView from "../components/ListView";
 import Graph from "../components/Graph";
 import { UserAuth } from "../context/AuthContext";
 import { useExerciseFetch } from "../hooks/useExerciseFetch";
+import { WeightModel } from "../components/WeightModel";
 
 const Progress = () => {
   const { logOut, user } = UserAuth();

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const ListView = ({ data }) => {
   const componentArray = [];
-  // console.log(data);
+  console.log(data);
   const handleClick = (name) => {
     // console.log(name);
   };

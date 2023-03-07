@@ -15,6 +15,7 @@ import {
   getDocs,
   query,
   where,
+  setDoc,
 } from "firebase/firestore";
 
 const AuthContext = createContext();
@@ -58,16 +59,49 @@ export const AuthContextProvider = ({ children }) => {
       });
       if (!arr.includes(currentUser.email)) {
         try {
-          const docRef = await addDoc(collection(db, "users"), {
+          const docRef = await setDoc(doc(db, "users", currentUser.uid), {
             name: currentUser.displayName,
             email: currentUser.email,
+            exercises: [
+              // {
+              //   name: "",
+              //   weight: "",
+              //   reps: "",
+              //   date: ""
+              // },
+            
+            ]
           });
+          
+          // addDoc(collection(db, "users"), {
+          //   name: currentUser.displayName,
+          //   email: currentUser.email,
+          //   exercises: [
+          //     {
+          //       name: "",
+          //       weight: "",
+          //       reps: "",
+          //       date: ""
+          //     },
+            
+          //   ]
+          // });
+         
           console.log("Document written with ID: ", docRef.id);
+          console.log(currentUser.uid)
+          // console.log("Collection added with ID: ", collectionRef.id);
+
+          // await db.collection("users").doc(currentUser).collection('exercises').add({
+          //   name: this.name,
+          //   weight: this.weight,
+          //   reps: this.reps,
+          //   date: this.date
+          // })
         } catch (e) {
           console.error("Error adding document: ", e);
         }
         console.log("User", currentUser);
-      }else{
+      } else {
         // console.log("User already exists")
       }
     });

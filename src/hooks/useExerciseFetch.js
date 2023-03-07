@@ -15,7 +15,7 @@ export const useExerciseFetch = (url, target) => {
       tempNameArr.push(JSON.parse(y)[count].name);
     }
     // console.log(tempNameArr)
-    return tempNameArr;
+    return tempNameArr; 
   };
 
   useEffect(() => {
