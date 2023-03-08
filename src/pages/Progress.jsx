@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PlyoModel from "../components/PlyometricModel";
+import {PlyoModel} from "../components/PlyometricModel"
 import ListView from "../components/ListView";
 import Graph from "../components/Graph";
 import { UserAuth } from "../context/AuthContext";

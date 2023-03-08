@@ -62,7 +62,16 @@ export const AuthContextProvider = ({ children }) => {
           const docRef = await setDoc(doc(db, "users", currentUser.uid), {
             name: currentUser.displayName,
             email: currentUser.email,
-            exercises: [
+            weightExercises: [
+              // {
+              //   name: "",
+              //   weight: "",
+              //   reps: "",
+              //   date: ""
+              // },
+            
+            ],
+            plyoExercises: [
               // {
               //   name: "",
               //   weight: "",
@@ -71,6 +80,7 @@ export const AuthContextProvider = ({ children }) => {
               // },
             
             ]
+
           });
           
           // addDoc(collection(db, "users"), {

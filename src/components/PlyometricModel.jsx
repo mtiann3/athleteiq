@@ -1,7 +1,96 @@
-import React, { useState } from "react";
+import { useContext, createContext, useEffect, useState } from "react";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth, db } from "../firebase";
+import {
+  collection,
+  addDoc,
+  getDoc,
+  doc,
+  update,
+  updateDoc,
+  getDocs,
+  query,
+  where,
+  addCollection,
+  setDoc,
+} from "firebase/firestore";
+import { UserAuth } from "../context/AuthContext";
 
-const PlyoModel = () => {
+export const PlyoModel = () => {
   const [showModal, setShowModal] = useState(false);
+  const { logOut, user } = UserAuth();
+
+  const [name, setName] = useState("");
+  const [time, setTime] = useState("");
+  const [dist, setDist] = useState("");
+  const [date, setDate] = useState("");
+
+  const [state, setState] = useState({
+    name: null,
+    time: null,
+    dist: null,
+    date: null,
+  });
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const handleDistChange = (event) => {
+    setDist(event.target.value);
+  };
+  const handleTimeChange = (event) => {
+    setTime(event.target.value);
+  };
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+  };
+
+  const handleClick = async () => {
+    setShowModal(false);
+    setState({
+      name: name,
+      time: time,
+      dist: dist,
+      date: date,
+    });
+    console.log("hello");
+    // console.log(user?.displayName);
+    //add to list of completed exercises in db.
+
+    try {
+      //update user and set exercise name
+      console.log(user.uid);
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      const userExercisesArr = docSnap.data().plyoExercises;
+      console.log(userExercisesArr);
+      let arrTemp = [];
+
+      for (let i = 0; i < userExercisesArr.length; i++) {
+        arrTemp.push(userExercisesArr[i]);
+      }
+
+      console.log(userExercisesArr);
+
+      arrTemp.push({
+        name: name,
+        time: time,
+        dist: dist,
+        date: date,
+      });
+      console.log(arrTemp);
+      updateDoc(doc(db, "users", user.uid), {
+        plyoExercises: arrTemp,
+      });
+    } catch (e) {
+      console.error("Error updating user: ", e);
+    }
+  };
   return (
     <>
       <button
@@ -33,33 +122,57 @@ const PlyoModel = () => {
                     <label className="block text-black text-sm font-bold mb-1">
                       Exercise Name
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      type="text"
+                      id="name"
+                      name="name"
+                      onChange={handleNameChange}
+                    />
                     <label className="block text-black text-sm font-bold mb-1">
                       Time (If necessary)
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      type="text"
+                      id="time"
+                      name="time"
+                      onChange={handleTimeChange}
+                    />
                     <label className="block text-black text-sm font-bold mb-1">
                       Distance (Height or Length)
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      type="text"
+                      id="dist"
+                      name="dist"
+                      onChange={handleDistChange}
+                    />
                     <label className="block text-black text-sm font-bold mb-1">
                       Date(XX-XX-XXXX)
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-1 text-black" />
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      type="text"
+                      id="date"
+                      name="date"
+                      onChange={handleDateChange}
+                    />
                   </form>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => handleClick()}
                   >
                     Close
                   </button>
                   <button
                     className="text-white bg-yellow-500 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => handleClick()}
                   >
                     Submit
                   </button>
@@ -71,6 +184,5 @@ const PlyoModel = () => {
       ) : null}
     </>
   );
+  return state;
 };
-
-export default PlyoModel;

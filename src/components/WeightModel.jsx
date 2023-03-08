@@ -65,7 +65,7 @@ export const WeightModel = () => {
       console.log(user.uid);
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
-      const userExercisesArr = docSnap.data().exercises;
+      const userExercisesArr = docSnap.data().weightExercises;
       console.log(userExercisesArr)
       let arrTemp = []
 
@@ -83,7 +83,7 @@ export const WeightModel = () => {
       })
 
       updateDoc(doc(db, "users", user.uid), {
-        exercises: arrTemp
+        weightExercises: arrTemp
       });
     } catch (e) {
       console.error("Error updating user: ", e);
