@@ -30,7 +30,22 @@ export const WeightModel = () => {
   const [weight, setWeight] = useState("");
   const [reps, setReps] = useState("");
   const [date, setDate] = useState("");
-
+  const [editDate, setEditDate] = useState(true);
+  const handleCheckBoxClick = () => {
+    setEditDate(!editDate);
+    if (editDate !== false) {
+      var today = new Date(),
+        temp =
+          today.getFullYear() +
+          "-" +
+          (today.getMonth() + 1) +
+          "-" +
+          today.getDate();
+      setDate(temp);
+    } else {
+      setDate(null);
+    }
+  };
   const [state, setState] = useState({
     name: null,
     weight: null,
@@ -66,24 +81,24 @@ export const WeightModel = () => {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
       const userExercisesArr = docSnap.data().weightExercises;
-      console.log(userExercisesArr)
-      let arrTemp = []
+      console.log(userExercisesArr);
+      let arrTemp = [];
 
-      for (let i = 0; i < userExercisesArr.length; i++){
-        arrTemp.push(userExercisesArr[i])
+      for (let i = 0; i < userExercisesArr.length; i++) {
+        arrTemp.push(userExercisesArr[i]);
       }
 
-      console.log(userExercisesArr)
+      console.log(userExercisesArr);
 
       arrTemp.push({
         name: name,
         weight: weight,
         reps: reps,
         date: date,
-      })
+      });
 
       updateDoc(doc(db, "users", user.uid), {
-        weightExercises: arrTemp
+        weightExercises: arrTemp,
       });
     } catch (e) {
       console.error("Error updating user: ", e);
@@ -150,17 +165,35 @@ export const WeightModel = () => {
                       onChange={handleRepsChange}
                       // value={state.reps}
                     />
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Date(XX-XX-XXXX)
-                    </label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                      type="text"
-                      id="date"
-                      name="date"
-                      onChange={handleDateChange}
-                      // value={state.date}
-                    />
+                    <div hidden={!editDate}>
+                      <label className="block text-black text-sm font-bold mb-1">
+                        Date(MM-DD-YYYY)
+                      </label>
+                      <input
+                        className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                        type="text"
+                        id="date"
+                        name="date"
+                        onChange={handleDateChange}
+                        // value={state.date}
+                      />
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                      <input
+                        id="default-checkbox"
+                        type="checkbox"
+                        value=""
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        onClick={handleCheckBoxClick}
+                      />
+                      <label
+                        for="default-checkbox"
+                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Current Date
+                      </label>
+                    </div>
                   </form>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">

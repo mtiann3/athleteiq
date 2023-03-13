@@ -11,8 +11,8 @@ const Home = () => {
       </h1>
       {/* description */}
       <p className="p-10 text-2xl italic font-bold text-center leading-[3rem] text-[#e11624] ">
-        Track your progress and transform your body with your own personalized
-        fitness app. Input your stats and get a tailored workout plan. Reach
+        For Athletes, made by an Athlete. Track your progress and transform your body with your own personalized
+        fitness app. Input your stats and get a custom workout plan made just for you. Reach
         your fitness goals efficiently with progress tracking. Start your
         transformation journey now!
       </p>

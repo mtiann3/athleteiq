@@ -13,14 +13,14 @@ const Navbar = () => {
   // console.log(loggedIn);
   //user !=null will be true if logged in and false if not
   const navigate = useNavigate();
-  useEffect(()=>{
+  useEffect(() => {
     // console.log("mounted")
-  }, [])
+  }, []);
   const handleSignOut = async () => {
     try {
       await logOut();
       //go to home screen
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +31,7 @@ const Navbar = () => {
     }
     return false;
   };
-  
+
   return (
     <div className="flex justify-between bg-[#1a161a]  w-full p-4 ">
       <div onClick={handleClick} className="  z-10 cursor-pointer">
@@ -84,6 +84,17 @@ const Navbar = () => {
           <Link
             onClick={handleClick}
             style={{ cursor: "pointer" }}
+            to="nutrition"
+            smooth={true}
+            duration={500}
+          >
+            Nutrition
+          </Link>
+        </li>
+        <li className="py-6 text-4xl">
+          <Link
+            onClick={handleClick}
+            style={{ cursor: "pointer" }}
             to="progress"
             smooth={true}
             duration={500}
@@ -102,18 +113,18 @@ const Navbar = () => {
             Goals
           </Link>
         </li>
-        <a className="  py-6 text-4xl">
+        <a className="  py-6 text-4xl text-[#e11624]">
           <Link
             onClick={handleClick}
             style={{ cursor: "pointer" }}
-            to="groups"
+            to="export"
             smooth={true}
             duration={500}
           >
-            Groups
+            Export Data
           </Link>
         </a>
-        <li className="py-6 text-4xl">
+        <li className="py-6 text-4xl text-[#00ff00]">
           <Link
             onClick={handleClick}
             style={{ cursor: "pointer" }}

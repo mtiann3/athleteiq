@@ -21,59 +21,65 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { UserAuth } from "../context/AuthContext";
-
-export const PlyoModel = () => {
-  const [showModal, setShowModal] = useState(false);
+export const NutritionModel = () => {
   const { logOut, user } = UserAuth();
 
+  const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
-  const [time, setTime] = useState("");
-  const [dist, setDist] = useState("");
-  const [date, setDate] = useState("");
-  const [editDate, setEditDate] = useState(true);
-  const handleCheckBoxClick = () => {
-    setEditDate(!editDate);
-    if (editDate !== false) {
-      var today = new Date(),
-        temp =
-          today.getFullYear() +
-          "-" +
-          (today.getMonth() + 1) +
-          "-" +
-          today.getDate();
-      setDate(temp);
-    } else {
-      setDate(null);
-    }
-  };
+  const [carbs, setCarbs] = useState("");
+  const [fats, setFats] = useState("");
+  const [proteins, setProteins] = useState("");
+  const [servings, setServings] = useState("");
+  const [calories, setCalories] = useState("");
+
   const [state, setState] = useState({
     name: null,
-    time: null,
-    dist: null,
-    date: null,
+    carbs: null,
+    fats: null,
+    proteins: null,
+    servings: null,
+    calories: null,
   });
+  const updateCalories =  () => {
+     setCalories(
+      (parseInt(proteins) * 4 + parseInt(carbs) * 4 + parseInt(fats) * 9) *
+        parseInt(servings)
+    );
+    console.log(
+      (parseInt(proteins) * 4 + parseInt(carbs) * 4 + parseInt(fats) * 9) *
+        parseInt(servings)
+    );
+  };
   const handleNameChange = (event) => {
     setName(event.target.value);
+    updateCalories();
   };
-  const handleDistChange = (event) => {
-    setDist(event.target.value);
+  const handleCarbsChange = (event) => {
+    setCarbs(event.target.value);
+    updateCalories();
   };
-  const handleTimeChange = (event) => {
-    setTime(event.target.value);
+  const handleFatsChange = (event) => {
+    setFats(event.target.value);
+    updateCalories();
   };
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
+  const handleProteinsChange = (event) => {
+    setProteins(event.target.value);
+    updateCalories();
   };
-
+  const handleServingsChange = (event) => {
+    setServings(event.target.value);
+    updateCalories();
+  };
   const handleClick = async () => {
     setShowModal(false);
     setState({
       name: name,
-      time: time,
-      dist: dist,
-      date: date,
+      carbs: carbs,
+      fats: fats,
+      proteins: proteins,
+      servings: servings,
+      calories: calories,
     });
-    console.log("hello");
     // console.log(user?.displayName);
     //add to list of completed exercises in db.
 
@@ -82,7 +88,7 @@ export const PlyoModel = () => {
       console.log(user.uid);
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
-      const userExercisesArr = docSnap.data().plyoExercises;
+      const userExercisesArr = docSnap.data().customFoods;
       console.log(userExercisesArr);
       let arrTemp = [];
 
@@ -94,13 +100,15 @@ export const PlyoModel = () => {
 
       arrTemp.push({
         name: name,
-        time: time,
-        dist: dist,
-        date: date,
+        carbs: carbs,
+        fats: fats,
+        proteins: proteins,
+        servings: servings,
+        calories: calories,
       });
-      console.log(arrTemp);
+
       updateDoc(doc(db, "users", user.uid), {
-        plyoExercises: arrTemp,
+        customFoods: arrTemp,
       });
     } catch (e) {
       console.error("Error updating user: ", e);
@@ -114,7 +122,7 @@ export const PlyoModel = () => {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Add Plyometric Exercise
+        Create Nutrition Item
       </button>
       {showModal ? (
         <>
@@ -135,7 +143,7 @@ export const PlyoModel = () => {
                 <div className="relative p-6 flex-auto">
                   <form className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 w-full">
                     <label className="block text-black text-sm font-bold mb-1">
-                      Exercise Name
+                      Food Name
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
@@ -143,62 +151,59 @@ export const PlyoModel = () => {
                       id="name"
                       name="name"
                       onChange={handleNameChange}
+                      //   value={state.name}
                     />
                     <label className="block text-black text-sm font-bold mb-1">
-                      Time (If necessary)
+                      Carbohydrates
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                       type="text"
-                      id="time"
-                      name="time"
-                      onChange={handleTimeChange}
+                      id="carbs"
+                      name="carbs"
+                      onChange={handleCarbsChange}
+                      //   value={state.carbs}
                     />
                     <label className="block text-black text-sm font-bold mb-1">
-                      Distance (Height or Length)
+                      Fats
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                       type="text"
-                      id="dist"
-                      name="dist"
-                      onChange={handleDistChange}
+                      id="fats"
+                      name="fats"
+                      onChange={handleFatsChange}
+                      //   value={state.fats}
                     />
-                    <div hidden={!editDate}>
-                      <label className="block text-black text-sm font-bold mb-1">
-                        Date(MM-DD-YYYY)
-                      </label>
-                      <input
-                        className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                        type="text"
-                        id="date"
-                        name="date"
-                        onChange={handleDateChange}
-                      />
-                    </div>
-
-                    <div class="flex items-center mb-4">
-                      <input
-                        id="default-checkbox"
-                        type="checkbox"
-                        value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        onClick={handleCheckBoxClick}
-                      />
-                      <label
-                        for="default-checkbox"
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                      >
-                        Current Date
-                      </label>
-                    </div>
+                    <label className="block text-black text-sm font-bold mb-1">
+                      Protein
+                    </label>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      type="text"
+                      id="proteins"
+                      name="proteins"
+                      onChange={handleProteinsChange}
+                      //   value={state.proteins}
+                    />
+                    <label className="block text-black text-sm font-bold mb-1">
+                      Serving Count
+                    </label>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      type="text"
+                      id="servings"
+                      name="servings"
+                      onChange={handleServingsChange}
+                      //   value={state.servings}
+                    />
                   </form>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
                     type="button"
-                    onClick={() => handleClick()}
+                    onClick={() => setShowModal(false)}
                   >
                     Close
                   </button>
@@ -217,5 +222,6 @@ export const PlyoModel = () => {
       ) : null}
     </>
   );
-  return state;
 };
+
+export default NutritionModel;

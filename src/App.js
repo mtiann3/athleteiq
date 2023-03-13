@@ -9,8 +9,9 @@ import Signin from "./pages/Signin";
 import Progress from "./pages/Progress";
 import Dashboard from "./pages/Dashboard";
 import Feedback from "./pages/Feedback";
-import Groups from "./pages/Groups";
+import Export from "./pages/Export";
 import Goals from "./pages/Goals";
+import Nutrition from "./pages/Nutrition";
 
 function App() {
   return (
@@ -29,11 +30,12 @@ function App() {
               </Protected>
             }
           />
+          <Route path="/nutrition" element={<Nutrition />} />
+
           <Route path="/progress" element={<Progress />} />
           <Route path="/goals" element={<Goals />} />
-          <Route path="/groups" element={<Groups />} />
+          <Route path="/export" element={<Export />} />
           <Route path="/feedback" element={<Feedback />} />
-
         </Routes>
       </AuthContextProvider>
     </div>

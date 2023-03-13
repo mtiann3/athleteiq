@@ -79,6 +79,24 @@ export const AuthContextProvider = ({ children }) => {
               //   date: ""
               // },
             
+            ],
+            nutrition: [
+              // {
+              //   name: "",
+              //   weight: "",
+              //   reps: "",
+              //   date: ""
+              // },
+            
+            ],
+            customFoods: [
+              // {
+              //   name: "",
+              //   weight: "",
+              //   reps: "",
+              //   date: ""
+              // },
+            
             ]
 
           });

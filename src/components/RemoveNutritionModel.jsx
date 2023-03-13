@@ -20,16 +20,11 @@ import {
   addCollection,
   setDoc,
 } from "firebase/firestore";
+//clicking the checkbox makes the date input invisible and sets the date to system time.
 import { UserAuth } from "../context/AuthContext";
 
-export const PlyoModel = () => {
-  const [showModal, setShowModal] = useState(false);
+export const RemoveNutritionModel = () => {
   const { logOut, user } = UserAuth();
-
-  const [name, setName] = useState("");
-  const [time, setTime] = useState("");
-  const [dist, setDist] = useState("");
-  const [date, setDate] = useState("");
   const [editDate, setEditDate] = useState(true);
   const handleCheckBoxClick = () => {
     setEditDate(!editDate);
@@ -46,20 +41,18 @@ export const PlyoModel = () => {
       setDate(null);
     }
   };
+  const [showModal, setShowModal] = useState(false);
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+
   const [state, setState] = useState({
     name: null,
-    time: null,
-    dist: null,
     date: null,
   });
+  
+
   const handleNameChange = (event) => {
     setName(event.target.value);
-  };
-  const handleDistChange = (event) => {
-    setDist(event.target.value);
-  };
-  const handleTimeChange = (event) => {
-    setTime(event.target.value);
   };
   const handleDateChange = (event) => {
     setDate(event.target.value);
@@ -69,42 +62,41 @@ export const PlyoModel = () => {
     setShowModal(false);
     setState({
       name: name,
-      time: time,
-      dist: dist,
       date: date,
     });
-    console.log("hello");
     // console.log(user?.displayName);
     //add to list of completed exercises in db.
 
-    try {
-      //update user and set exercise name
-      console.log(user.uid);
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-      const userExercisesArr = docSnap.data().plyoExercises;
-      console.log(userExercisesArr);
-      let arrTemp = [];
+    // try {
+    //   //update user and set exercise name
+    //   console.log(user.uid);
+    //   const docRef = doc(db, "users", user.uid);
+    //   const docSnap = await getDoc(docRef);
+    //   const userExercisesArr = docSnap.data().customFoods;
+    //   console.log(userExercisesArr);
+    //   let arrTemp = [];
 
-      for (let i = 0; i < userExercisesArr.length; i++) {
-        arrTemp.push(userExercisesArr[i]);
-      }
+    //   for (let i = 0; i < userExercisesArr.length; i++) {
+    //     arrTemp.push(userExercisesArr[i]);
+    //   }
 
-      console.log(userExercisesArr);
+    //   console.log(userExercisesArr);
 
-      arrTemp.push({
-        name: name,
-        time: time,
-        dist: dist,
-        date: date,
-      });
-      console.log(arrTemp);
-      updateDoc(doc(db, "users", user.uid), {
-        plyoExercises: arrTemp,
-      });
-    } catch (e) {
-      console.error("Error updating user: ", e);
-    }
+    //   arrTemp.push({
+    //     name: name,
+    //     carbs: carbs,
+    //     fats: fats,
+    //     proteins: proteins,
+    //     servings: servings,
+    //     calories: calories,
+    //   });
+
+    //   updateDoc(doc(db, "users", user.uid), {
+    //     customFoods: arrTemp,
+    //   });
+    // } catch (e) {
+    //   console.error("Error updating user: ", e);
+    // }
   };
   return (
     <>
@@ -114,7 +106,7 @@ export const PlyoModel = () => {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Add Plyometric Exercise
+        Remove Food
       </button>
       {showModal ? (
         <>
@@ -135,7 +127,7 @@ export const PlyoModel = () => {
                 <div className="relative p-6 flex-auto">
                   <form className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 w-full">
                     <label className="block text-black text-sm font-bold mb-1">
-                      Exercise Name
+                      Food Name
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
@@ -143,30 +135,11 @@ export const PlyoModel = () => {
                       id="name"
                       name="name"
                       onChange={handleNameChange}
+                      //   value={state.name}
                     />
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Time (If necessary)
-                    </label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                      type="text"
-                      id="time"
-                      name="time"
-                      onChange={handleTimeChange}
-                    />
-                    <label className="block text-black text-sm font-bold mb-1">
-                      Distance (Height or Length)
-                    </label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                      type="text"
-                      id="dist"
-                      name="dist"
-                      onChange={handleDistChange}
-                    />
-                    <div hidden={!editDate}>
+                    <div hidden={!editDate} >
                       <label className="block text-black text-sm font-bold mb-1">
-                        Date(MM-DD-YYYY)
+                        Date
                       </label>
                       <input
                         className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
@@ -174,9 +147,12 @@ export const PlyoModel = () => {
                         id="date"
                         name="date"
                         onChange={handleDateChange}
+
+                        //   value={state.carbs}
                       />
                     </div>
 
+                    {/* checkbox component */}
                     <div class="flex items-center mb-4">
                       <input
                         id="default-checkbox"
@@ -198,7 +174,7 @@ export const PlyoModel = () => {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
                     type="button"
-                    onClick={() => handleClick()}
+                    onClick={() => setShowModal(false)}
                   >
                     Close
                   </button>
@@ -217,5 +193,6 @@ export const PlyoModel = () => {
       ) : null}
     </>
   );
-  return state;
 };
+
+export default RemoveNutritionModel;
