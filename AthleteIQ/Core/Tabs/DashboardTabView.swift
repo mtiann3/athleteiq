@@ -1,73 +1,93 @@
-//
-//  DashboardTabView.swift
-//  AthleteIQ
-//
-//  Created by Mike Iannotti on 3/25/24.
-//
-
 import SwiftUI
 import SwiftData
 
 struct DashboardTabView: View {
     @Environment(\.modelContext) var context
     @State private var isShowingItemSheet = false
-//    Filters to only display expenses with values > $1000
-//    @Query(filter: #Predicate<Expense> { $0.value>1}, sort: \Expense.date)
-//    var expenses: [Expense]
     @Query(sort: \Expense.date)
     var expenses: [Expense]
-    @State private var expenseToEdit: Expense?
-    
+    @State private var selectedExpense: Expense?
+
     var body: some View {
-        NavigationStack{
-            List{
-                ForEach(expenses){ expense in
-                    ExpenseCell(expense: expense)
-                        .onTapGesture {
-                            expenseToEdit = expense
+        NavigationView {
+            List {
+                Section(header:
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("AthleteIQ")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                Text("Your Personal Fitness Assistant")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .padding(.vertical, 12)
+                ) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Current Login Streak:")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .padding(.top, 4)
                         }
+                        Spacer()
+                        Text("25")
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .frame(width: 120, height: 72)
+                            .background(Color(.systemGreen))
+                            .clipShape(Circle())
+                    }
                 }
-                .onDelete{ indexSet in
-                    for index in indexSet {
-                        context.delete(expenses[index])
-                        
+                
+                Section(header: Text("My Exercises")) {
+                    let uniqueExpenseNames = Set(expenses.map { $0.name })
+                    
+                    ForEach(uniqueExpenseNames.sorted(), id: \.self) { name in
+                        let filteredExpenses = expenses.filter { $0.name == name }
+                        if let expense = filteredExpenses.sorted(by: { $0.date > $1.date }).first {
+                            ExpenseCell(expense: expense)
+                                .onTapGesture {
+                                    self.selectedExpense = expense
+                                }
+                        }
                     }
                 }
             }
-            .navigationTitle("Expenses")
-            .navigationBarTitleDisplayMode(.large)
-            .sheet(isPresented: $isShowingItemSheet) {
-                AddExpenseSheet()
-            }
-            .sheet(item: $expenseToEdit) { expense in
-                UpdateExpenseSheet(expense: expense)
-            }
+            .listStyle(InsetGroupedListStyle())
             .toolbar {
-                if !expenses.isEmpty {
-                    Button("Add Expense", systemImage: "plus"){
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
                         isShowingItemSheet = true
+                    }) {
+                        Image(systemName: "plus")
                     }
                 }
             }
             .overlay {
-                if expenses.isEmpty{
-                    ContentUnavailableView(label: {
-                        Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
-                    }, description: {
-                        Text("Start adding expenses to see your list.")
-                    }, actions: {
-                        Button("Add Expense") {
-                            isShowingItemSheet = true
-                        }
-                    })
-                    .offset(y: -60)
+                if expenses.isEmpty {
+                    VStack {
+                        Spacer()
+                        ContentUnavailableView(label: {
+                            Label("No Exercises", systemImage: "dumbbell.fill")
+                        }, description: {
+                            Text("Start adding exercises to see your progress.")
+                        }, actions: {
+                            Button("Add Exercise") {
+                                isShowingItemSheet = true
+                            }
+                        })
+                        .padding()
+                        Spacer()
+                    }
                 }
             }
         }
+        .sheet(isPresented: $isShowingItemSheet) {
+            AddExpenseSheet()
+        }
+        .sheet(item: $selectedExpense) { expense in
+            ViewExerciseProgressSheet(expense: expense)
+        }
     }
-    
-}
-
-#Preview {
-    DashboardTabView()
 }

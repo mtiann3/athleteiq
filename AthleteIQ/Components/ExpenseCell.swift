@@ -1,10 +1,3 @@
-//
-//  ExpenseCell.swift
-//  AthleteIQ
-//
-//  Created by Mike Iannotti on 3/24/24.
-//
-
 import SwiftUI
 
 struct ExpenseCell: View {
@@ -12,13 +5,31 @@ struct ExpenseCell: View {
     let expense: Expense
     
     var body: some View {
-        HStack {
+        HStack(spacing: 10) {
             Text(formatDate(expense.date))
                 .frame(width: 70, alignment: .leading)
-            Text(expense.name)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text("2 Sets of")
+                    .font(.headline)
+                Text(expense.name)
+                    .font(.body)
+            }
+            
             Spacer()
-            Text(expense.value, format: .currency(code: "USD"))
+            
+            VStack(alignment: .trailing, spacing: 4) {
+                Text("\(Int(expense.value)) lbs")
+                    .font(.headline)
+                Text(" X 1")
+                    .font(.body)
+            }
         }
+        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
     }
     
     private func formatDate(_ date: Date) -> String {

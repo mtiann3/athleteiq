@@ -11,6 +11,13 @@
 		A800EDC72BB1226F009B9209 /* AddExpenseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800EDC62BB1226F009B9209 /* AddExpenseSheet.swift */; };
 		A800EDC92BB1228C009B9209 /* UpdateExpenseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800EDC82BB1228C009B9209 /* UpdateExpenseSheet.swift */; };
 		A800EDCC2BB1DE7B009B9209 /* DashboardTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800EDCB2BB1DE7B009B9209 /* DashboardTabView.swift */; };
+		A800EDCE2BB1DFDE009B9209 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800EDCD2BB1DFDE009B9209 /* ProfileTabView.swift */; };
+		A800EDD02BB1DFF9009B9209 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800EDCF2BB1DFF9009B9209 /* Exercise.swift */; };
+		A800EDD22BB1E003009B9209 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800EDD12BB1E003009B9209 /* Weight.swift */; };
+		A88305BA2BB2449A00D1BCA9 /* UpdateUsernameSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305B92BB2449A00D1BCA9 /* UpdateUsernameSheet.swift */; };
+		A88305BC2BB252E700D1BCA9 /* EditExerciseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305BB2BB252E700D1BCA9 /* EditExerciseTabView.swift */; };
+		A88305BF2BB257A700D1BCA9 /* ExerciseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305BE2BB257A700D1BCA9 /* ExerciseNames.swift */; };
+		A88305C12BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305C02BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift */; };
 		A8BFB4D72BB115B900E87CB1 /* AthleteIQApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BFB4D62BB115B900E87CB1 /* AthleteIQApp.swift */; };
 		A8BFB4D92BB115B900E87CB1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BFB4D82BB115B900E87CB1 /* ContentView.swift */; };
 		A8BFB4DB2BB115BA00E87CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BFB4DA2BB115BA00E87CB1 /* Assets.xcassets */; };
@@ -43,6 +50,13 @@
 		A800EDC62BB1226F009B9209 /* AddExpenseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseSheet.swift; sourceTree = "<group>"; };
 		A800EDC82BB1228C009B9209 /* UpdateExpenseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateExpenseSheet.swift; sourceTree = "<group>"; };
 		A800EDCB2BB1DE7B009B9209 /* DashboardTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTabView.swift; sourceTree = "<group>"; };
+		A800EDCD2BB1DFDE009B9209 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
+		A800EDCF2BB1DFF9009B9209 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		A800EDD12BB1E003009B9209 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
+		A88305B92BB2449A00D1BCA9 /* UpdateUsernameSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUsernameSheet.swift; sourceTree = "<group>"; };
+		A88305BB2BB252E700D1BCA9 /* EditExerciseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseTabView.swift; sourceTree = "<group>"; };
+		A88305BE2BB257A700D1BCA9 /* ExerciseNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseNames.swift; sourceTree = "<group>"; };
+		A88305C02BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExerciseProgressSheet.swift; sourceTree = "<group>"; };
 		A8BFB4D32BB115B900E87CB1 /* AthleteIQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AthleteIQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BFB4D62BB115B900E87CB1 /* AthleteIQApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteIQApp.swift; sourceTree = "<group>"; };
 		A8BFB4D82BB115B900E87CB1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +114,7 @@
 		A800EDC22BB12240009B9209 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A88305BD2BB2579B00D1BCA9 /* Names */,
 				A800EDCA2BB1DE6E009B9209 /* Tabs */,
 				A800EDC52BB1225B009B9209 /* Sheets */,
 				A800EDC32BB12243009B9209 /* Root */,
@@ -119,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				A8BFB50A2BB1161C00E87CB1 /* Expense.swift */,
+				A800EDCF2BB1DFF9009B9209 /* Exercise.swift */,
+				A800EDD12BB1E003009B9209 /* Weight.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -128,6 +145,8 @@
 			children = (
 				A800EDC62BB1226F009B9209 /* AddExpenseSheet.swift */,
 				A800EDC82BB1228C009B9209 /* UpdateExpenseSheet.swift */,
+				A88305B92BB2449A00D1BCA9 /* UpdateUsernameSheet.swift */,
+				A88305C02BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -136,8 +155,18 @@
 			isa = PBXGroup;
 			children = (
 				A800EDCB2BB1DE7B009B9209 /* DashboardTabView.swift */,
+				A800EDCD2BB1DFDE009B9209 /* ProfileTabView.swift */,
+				A88305BB2BB252E700D1BCA9 /* EditExerciseTabView.swift */,
 			);
 			path = Tabs;
+			sourceTree = "<group>";
+		};
+		A88305BD2BB2579B00D1BCA9 /* Names */ = {
+			isa = PBXGroup;
+			children = (
+				A88305BE2BB257A700D1BCA9 /* ExerciseNames.swift */,
+			);
+			path = Names;
 			sourceTree = "<group>";
 		};
 		A8BFB4CA2BB115B900E87CB1 = {
@@ -329,12 +358,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A800EDC12BB12224009B9209 /* ExpenseCell.swift in Sources */,
+				A88305BC2BB252E700D1BCA9 /* EditExerciseTabView.swift in Sources */,
 				A8BFB4D92BB115B900E87CB1 /* ContentView.swift in Sources */,
+				A800EDCE2BB1DFDE009B9209 /* ProfileTabView.swift in Sources */,
 				A8BFB4D72BB115B900E87CB1 /* AthleteIQApp.swift in Sources */,
 				A800EDC92BB1228C009B9209 /* UpdateExpenseSheet.swift in Sources */,
+				A800EDD22BB1E003009B9209 /* Weight.swift in Sources */,
 				A8BFB50B2BB1161C00E87CB1 /* Expense.swift in Sources */,
 				A800EDCC2BB1DE7B009B9209 /* DashboardTabView.swift in Sources */,
 				A800EDC72BB1226F009B9209 /* AddExpenseSheet.swift in Sources */,
+				A88305BA2BB2449A00D1BCA9 /* UpdateUsernameSheet.swift in Sources */,
+				A88305BF2BB257A700D1BCA9 /* ExerciseNames.swift in Sources */,
+				A800EDD02BB1DFF9009B9209 /* Exercise.swift in Sources */,
+				A88305C12BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

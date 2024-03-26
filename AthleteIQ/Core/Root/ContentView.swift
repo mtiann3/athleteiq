@@ -11,7 +11,20 @@ import SwiftData
 struct ContentView: View {
     
     var body: some View {
-        DashboardTabView()
+        TabView{
+            DashboardTabView()
+                .tabItem {
+                    Label("Dashboard", systemImage: "house.fill")
+            }
+            EditExerciseTabView()
+                .tabItem {
+                    Label("Edit", systemImage: "square.and.pencil.circle.fill")
+                }
+            ProfileTabView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle.fill")
+            }
+        }
     }
 }
 
