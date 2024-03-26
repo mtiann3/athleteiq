@@ -10,14 +10,15 @@ struct AddExpenseSheet: View {
     @State private var value: Double = 0
     
     // Import the expenseNames array
-    let exerciseNames = expenseNames
+//    let exerciseNames = expenseNames
+    let names = exerciseNames
 
     var body: some View {
         NavigationView {
             Form {
                 Picker("Exercise Name", selection: $selectedNameIndex) {
-                    ForEach(0..<expenseNames.count, id: \.self) { index in
-                        Text(self.exerciseNames[index])
+                    ForEach(0..<exerciseNames.count, id: \.self) { index in
+                        Text(self.names[index])
                     }
                 }
                 DatePicker("Date", selection: $date, displayedComponents: .date)
@@ -32,7 +33,7 @@ struct AddExpenseSheet: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        let selectedName = self.exerciseNames[selectedNameIndex]
+                        let selectedName = self.names[selectedNameIndex]
                         let expense = Expense(name: selectedName, date: date, value: value)
                         context.insert(expense)
                         try! context.save() // Save the context after inserting the expense

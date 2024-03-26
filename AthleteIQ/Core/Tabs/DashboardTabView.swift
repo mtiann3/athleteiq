@@ -4,9 +4,9 @@ import SwiftData
 struct DashboardTabView: View {
     @Environment(\.modelContext) var context
     @State private var isShowingItemSheet = false
-    @Query(sort: \Expense.date)
-    var expenses: [Expense]
-    @State private var selectedExpense: Expense?
+    @Query(sort: \Exercise.date)
+    var exercises: [Exercise]
+    @State private var selectedExercise: Exercise?
 
     var body: some View {
         NavigationView {
@@ -41,14 +41,14 @@ struct DashboardTabView: View {
                 }
                 
                 Section(header: Text("My Exercises")) {
-                    let uniqueExpenseNames = Set(expenses.map { $0.name })
+                    let uniqueExerciseNames = Set(exercises.map { $0.name })
                     
-                    ForEach(uniqueExpenseNames.sorted(), id: \.self) { name in
-                        let filteredExpenses = expenses.filter { $0.name == name }
-                        if let expense = filteredExpenses.sorted(by: { $0.date > $1.date }).first {
-                            ExpenseCell(expense: expense)
+                    ForEach(uniqueExerciseNames.sorted(), id: \.self) { name in
+                        let filteredExercises = exercises.filter { $0.name == name }
+                        if let exercise = filteredExercises.sorted(by: { $0.date > $1.date }).first {
+                            ExerciseCell(exercise: exercise)
                                 .onTapGesture {
-                                    self.selectedExpense = expense
+                                    self.selectedExercise = exercise
                                 }
                         }
                     }
@@ -65,7 +65,7 @@ struct DashboardTabView: View {
                 }
             }
             .overlay {
-                if expenses.isEmpty {
+                if exercises.isEmpty {
                     VStack {
                         Spacer()
                         ContentUnavailableView(label: {
@@ -84,10 +84,10 @@ struct DashboardTabView: View {
             }
         }
         .sheet(isPresented: $isShowingItemSheet) {
-            AddExpenseSheet()
+            AddExerciseSheet()
         }
-        .sheet(item: $selectedExpense) { expense in
-            ViewExerciseProgressSheet(expense: expense)
+        .sheet(item: $selectedExercise) { exercise in
+            ViewExerciseProgressSheet(exercise: exercise)
         }
     }
 }

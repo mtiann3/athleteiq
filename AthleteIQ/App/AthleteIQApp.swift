@@ -12,7 +12,7 @@ import SwiftData
 struct AthleteIQApp: App {
     
     let container: ModelContainer = {
-        let schema = Schema([Expense.self])
+        let schema = Schema([Exercise.self])
         let container = try! ModelContainer(for: schema,configurations: [])
         return container
     }()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-let expenseNames = [
+let exerciseNames = [
     "Ab Rollouts",
     "Arnold Press",
     "Barbell Bench Press",

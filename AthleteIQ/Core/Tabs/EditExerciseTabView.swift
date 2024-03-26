@@ -11,26 +11,26 @@ import SwiftData
 struct EditExerciseTabView: View {
     @Environment(\.modelContext) var context
     @State private var isShowingItemSheet = false
-    @Query(sort: \Expense.date)
-    var expenses: [Expense]
-    @State private var expenseToEdit: Expense?
+    @Query(sort: \Exercise.date)
+    var exercises: [Exercise]
+    @State private var exerciseToEdit: Exercise?
     
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    ForEach(expenses.sorted(by: { $0.date > $1.date })) { expense in
-                        EditExpenseCell(expense: expense)
+                    ForEach(exercises.sorted(by: { $0.date > $1.date })) { exercise in
+                        EditExerciseCell(exercise: exercise)
                             .onTapGesture {
-                                expenseToEdit = expense
+                                exerciseToEdit = exercise
                             }
                     }
                     .onDelete { indexSet in
-                        let sortedExpenses = expenses.sorted(by: { $0.date > $1.date })
+                        let sortedExercises = exercises.sorted(by: { $0.date > $1.date })
                         for index in indexSet {
-                            let expenseToDelete = sortedExpenses[index]
-                            if let originalIndex = expenses.firstIndex(where: { $0.id == expenseToDelete.id }) {
-                                context.delete(expenses[originalIndex])
+                            let exerciseToDelete = sortedExercises[index]
+                            if let originalIndex = exercises.firstIndex(where: { $0.id == exerciseToDelete.id }) {
+                                context.delete(exercises[originalIndex])
                             }
                         }
                     }
@@ -43,7 +43,7 @@ struct EditExerciseTabView: View {
                 // Your toolbar items
             }
             .overlay {
-                if expenses.isEmpty {
+                if exercises.isEmpty {
                     VStack {
                         Spacer()
                         ContentUnavailableView(label: {
@@ -61,8 +61,9 @@ struct EditExerciseTabView: View {
                 }
             }
         }
-        .sheet(item: $expenseToEdit) { expense in
-            UpdateExpenseSheet(expense: expense)
+        .sheet(item: $exerciseToEdit) { exercise in
+            UpdateExerciseSheet(exercise: exercise)
+//            UpdateExpenseSheet(expense: expense)
         }
     }
 }

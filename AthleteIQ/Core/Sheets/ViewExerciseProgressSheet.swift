@@ -12,7 +12,7 @@ import SwiftUI
 //and will display a graph of the one rep maxes by that exercise entry.
 //
 struct ViewExerciseProgressSheet: View {
-    let expense: Expense
+    let exercise: Exercise
         @Environment(\.presentationMode) var presentationMode
 
         var body: some View {
@@ -36,9 +36,9 @@ struct ViewExerciseProgressSheet: View {
 //                Spacer()
                 
                 
-                Text("Name: \(expense.name)")
-                Text("Amount: \(expense.value)")
-                Text("Date: \(expense.date)")
+                Text("Name: \(exercise.name)")
+                Text("Weight: \(exercise.weight) lbs")
+                Text("Date: \(exercise.date)")
                 // Add more details as needed
                 
                 Spacer()
