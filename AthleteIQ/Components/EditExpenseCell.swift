@@ -1,6 +1,13 @@
+//
+//  EditExpenseCell.swift
+//  AthleteIQ
+//
+//  Created by Mike Iannotti on 3/26/24.
+//
+
 import SwiftUI
 
-struct ExpenseCell: View {
+struct EditExpenseCell: View {
     
     let expense: Expense
     
@@ -10,23 +17,19 @@ struct ExpenseCell: View {
                 .frame(width: 70, alignment: .leading)
             
             VStack(alignment: .leading, spacing: 4) {
-//                Text("2 Sets of")
-//                    .font(.headline)
+                Text("2 Sets of")
+                    .font(.headline)
                 Text(expense.name)
                     .font(.body)
-                    .bold()
             }
             
             Spacer()
-            Text("Click to view progress")
-                .foregroundColor(.blue)
-                .font(.subheadline)
             
             VStack(alignment: .trailing, spacing: 4) {
-//                Text("\(Int(expense.value)) lbs")
-//                    .font(.headline)
-//                Text(" X 1")
-//                    .font(.body)
+                Text("\(Int(expense.value)) lbs")
+                    .font(.headline)
+                Text(" X 1")
+                    .font(.body)
             }
         }
         .padding(.vertical, 8)

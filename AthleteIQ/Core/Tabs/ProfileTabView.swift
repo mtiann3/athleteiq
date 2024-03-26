@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProfileTabView: View {
+    @State private var isShowingItemSheet = false
+
+    
     var body: some View {
         List{
             Section {
@@ -51,11 +55,28 @@ struct ProfileTabView: View {
                 
                 
             }
+            Section{
+                Button(action: {
+//              Open helpsheetview
+                    isShowingItemSheet = true
+                }) {
+                    Text("App instructions")
+                        .font(.subheadline)
+                        .foregroundColor(.blue)
+                        .bold()
+                }
+            
+               
+            }
+                
             
         }
-        
+        .sheet(isPresented: $isShowingItemSheet) {
+            HelpSheet()
+        }
         
     }
+    
 }
 
 #Preview {

@@ -20,21 +20,25 @@ struct EditExerciseTabView: View {
             List {
                 Section {
                     ForEach(expenses.sorted(by: { $0.date > $1.date })) { expense in
-                        ExpenseCell(expense: expense)
+                        EditExpenseCell(expense: expense)
                             .onTapGesture {
                                 expenseToEdit = expense
                             }
                     }
                     .onDelete { indexSet in
+                        let sortedExpenses = expenses.sorted(by: { $0.date > $1.date })
                         for index in indexSet {
-                            context.delete(expenses[index])
+                            let expenseToDelete = sortedExpenses[index]
+                            if let originalIndex = expenses.firstIndex(where: { $0.id == expenseToDelete.id }) {
+                                context.delete(expenses[originalIndex])
+                            }
                         }
                     }
                 }
-                
             }
+
             .listStyle(InsetGroupedListStyle())
-            .navigationTitle("Your Expenses") // <- Title for the view
+            .navigationTitle("Your Exercise History") // <- Title for the view
             .toolbar {
                 // Your toolbar items
             }

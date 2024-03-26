@@ -18,6 +18,8 @@
 		A88305BC2BB252E700D1BCA9 /* EditExerciseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305BB2BB252E700D1BCA9 /* EditExerciseTabView.swift */; };
 		A88305BF2BB257A700D1BCA9 /* ExerciseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305BE2BB257A700D1BCA9 /* ExerciseNames.swift */; };
 		A88305C12BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305C02BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift */; };
+		A88305C32BB364CA00D1BCA9 /* EditExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305C22BB364CA00D1BCA9 /* EditExpenseCell.swift */; };
+		A88305C52BB3659500D1BCA9 /* HelpSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305C42BB3659500D1BCA9 /* HelpSheet.swift */; };
 		A8BFB4D72BB115B900E87CB1 /* AthleteIQApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BFB4D62BB115B900E87CB1 /* AthleteIQApp.swift */; };
 		A8BFB4D92BB115B900E87CB1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BFB4D82BB115B900E87CB1 /* ContentView.swift */; };
 		A8BFB4DB2BB115BA00E87CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BFB4DA2BB115BA00E87CB1 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		A88305BB2BB252E700D1BCA9 /* EditExerciseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseTabView.swift; sourceTree = "<group>"; };
 		A88305BE2BB257A700D1BCA9 /* ExerciseNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseNames.swift; sourceTree = "<group>"; };
 		A88305C02BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExerciseProgressSheet.swift; sourceTree = "<group>"; };
+		A88305C22BB364CA00D1BCA9 /* EditExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseCell.swift; sourceTree = "<group>"; };
+		A88305C42BB3659500D1BCA9 /* HelpSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpSheet.swift; sourceTree = "<group>"; };
 		A8BFB4D32BB115B900E87CB1 /* AthleteIQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AthleteIQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BFB4D62BB115B900E87CB1 /* AthleteIQApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteIQApp.swift; sourceTree = "<group>"; };
 		A8BFB4D82BB115B900E87CB1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				A800EDC02BB12224009B9209 /* ExpenseCell.swift */,
+				A88305C22BB364CA00D1BCA9 /* EditExpenseCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				A800EDC82BB1228C009B9209 /* UpdateExpenseSheet.swift */,
 				A88305B92BB2449A00D1BCA9 /* UpdateUsernameSheet.swift */,
 				A88305C02BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift */,
+				A88305C42BB3659500D1BCA9 /* HelpSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 			files = (
 				A800EDC12BB12224009B9209 /* ExpenseCell.swift in Sources */,
 				A88305BC2BB252E700D1BCA9 /* EditExerciseTabView.swift in Sources */,
+				A88305C32BB364CA00D1BCA9 /* EditExpenseCell.swift in Sources */,
 				A8BFB4D92BB115B900E87CB1 /* ContentView.swift in Sources */,
 				A800EDCE2BB1DFDE009B9209 /* ProfileTabView.swift in Sources */,
 				A8BFB4D72BB115B900E87CB1 /* AthleteIQApp.swift in Sources */,
@@ -368,6 +375,7 @@
 				A800EDCC2BB1DE7B009B9209 /* DashboardTabView.swift in Sources */,
 				A800EDC72BB1226F009B9209 /* AddExpenseSheet.swift in Sources */,
 				A88305BA2BB2449A00D1BCA9 /* UpdateUsernameSheet.swift in Sources */,
+				A88305C52BB3659500D1BCA9 /* HelpSheet.swift in Sources */,
 				A88305BF2BB257A700D1BCA9 /* ExerciseNames.swift in Sources */,
 				A800EDD02BB1DFF9009B9209 /* Exercise.swift in Sources */,
 				A88305C12BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift in Sources */,
