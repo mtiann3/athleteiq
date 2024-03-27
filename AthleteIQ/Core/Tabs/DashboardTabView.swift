@@ -87,7 +87,7 @@ struct DashboardTabView: View {
             AddExerciseSheet()
         }
         .sheet(item: $selectedExercise) { exercise in
-            ViewExerciseProgressSheet(exercise: exercise)
+            ViewExerciseProgressSheet(exerciseName: exercise.name)
         }
     }
 }

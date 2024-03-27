@@ -14,7 +14,7 @@ struct AddExerciseSheet: View {
     
     @State private var selectedNameIndex = 0
     @State private var date: Date = .now
-    @State private var weight: Int = 0
+    @State private var weight: Double = 0.0
     @State private var reps: Int = 0
     @State private var sets: Int = 0
 

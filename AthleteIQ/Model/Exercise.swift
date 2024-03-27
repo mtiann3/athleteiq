@@ -13,11 +13,12 @@ class Exercise {
     var name: String
 //    var category: String
     var date: Date
-    var weight: Int
+    var weight: Double
     var repetitions: Int
     var sets: Int
     
-    init(name: String, date: Date, weight: Int, repetitions: Int, sets: Int) {
+    
+    init(name: String, date: Date, weight: Double, repetitions: Int, sets: Int) {
         self.name = name
         self.date = date
         self.weight = weight

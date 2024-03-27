@@ -24,7 +24,7 @@ struct EditExerciseCell: View {
                 .frame(width: 70, alignment: .leading)
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("\(exercise.sets) Sets of \(exercise.repetitions)")
+                Text("\(exercise.sets) x \(exercise.repetitions) Reps")
                     .font(.headline)
                 Text(exercise.name)
                     .font(.body)
