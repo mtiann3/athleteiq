@@ -15,7 +15,7 @@ struct LineChart: View {
     var body: some View {
         VStack{
 //            LineChartView(data: data, title: "Bench Press Progress",form: ChartForm.extraLarge, rateValue: Int(calculateRateChange()), dropShadow: true)
-            LineChartView(data: data, title: "",legend: "Change In Estimated 1RM Since Last Entry" ,form: ChartForm.extraLarge ,rateValue: Int(calculateRateChange() ?? 0),dropShadow: true)
+            LineChartView(data: data, title: "Current 1RM: \(String(data.last ?? 0))",legend: "Change In Estimated 1RM Since Last Entry" ,form: ChartForm.extraLarge ,rateValue: Int(calculateRateChange() ?? 0),dropShadow: true)
         }
     }
     
@@ -30,6 +30,7 @@ struct LineChart: View {
         // Assuming rate change is a simple percentage increase
         return ((last - secondToLast) / secondToLast) * 100
     }
+    
 }
 
 

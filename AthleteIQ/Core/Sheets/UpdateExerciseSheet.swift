@@ -52,7 +52,7 @@ struct UpdateExerciseSheet: View {
                         .keyboardType(.decimalPad)
                 }
             }
-            .navigationTitle("Update Expense")
+            .navigationTitle("Update Exercise")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {

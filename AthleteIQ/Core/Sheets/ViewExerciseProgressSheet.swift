@@ -86,19 +86,19 @@ struct ExerciseDetailView: View {
             HStack {
                 Text("Reps:")
                     .bold()
-                Spacer()
+                    Spacer()
                 Text("\(exercise.repetitions)")
             }
             HStack {
                 Text("Sets:")
                     .bold()
-                Spacer()
+                    Spacer()
                 Text("\(exercise.sets)")
             }
             HStack {
                 Text("Date:")
                     .bold()
-                Spacer()
+                    Spacer()
                 Text(formattedDate(exercise.date))
             }
         }
@@ -106,8 +106,8 @@ struct ExerciseDetailView: View {
         .background(Color.white) // Optional: Add background color
         .cornerRadius(8) // Optional: Add corner radius for rounded corners
         .shadow(radius: 3) // Optional: Add shadow for depth effect
+        .preferredColorScheme(.light) // Set the preferred color scheme to light mode
     }
-    
     
     func formattedDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()

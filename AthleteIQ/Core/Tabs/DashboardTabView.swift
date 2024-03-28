@@ -22,22 +22,6 @@ struct DashboardTabView: View {
                             }
                             .padding(.vertical, 12)
                 ) {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Current Login Streak:")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .padding(.top, 4)
-                        }
-                        Spacer()
-                        Text("25")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .frame(width: 120, height: 72)
-                            .background(Color(.systemGreen))
-                            .clipShape(Circle())
-                    }
                 }
                 
                 Section(header: Text("My Exercises")) {
@@ -50,6 +34,7 @@ struct DashboardTabView: View {
                                 .onTapGesture {
                                     self.selectedExercise = exercise
                                 }
+                            
                         }
                     }
                 }

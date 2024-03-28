@@ -1,18 +1,18 @@
 //
-//  UpdateUsernameSheet.swift
+//  ExportDataSheet.swift
 //  AthleteIQ
 //
-//  Created by Mike Iannotti on 3/25/24.
+//  Created by Mike Iannotti on 3/27/24.
 //
 
 import SwiftUI
 
-struct UpdateUsernameSheet: View {
+struct ExportDataSheet: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    UpdateUsernameSheet()
+    ExportDataSheet()
 }

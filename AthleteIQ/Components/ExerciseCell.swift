@@ -18,9 +18,10 @@ struct ExerciseCell: View {
             }
             
             Spacer()
-            Text("Click to view progress")
-                .foregroundColor(.blue)
-                .font(.subheadline)
+            Text("View progress")
+                .foregroundColor(Color.blue)
+                .font(.title3)
+                .bold()
             
             VStack(alignment: .trailing, spacing: 4) {
 //                Text("\(Int(expense.value)) lbs")
@@ -31,9 +32,9 @@ struct ExerciseCell: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
-        .background(Color.white)
+        .background(Color(.systemGray5))
         .cornerRadius(10)
-        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        .shadow(color: Color.blue.opacity(0.4), radius: 5, x: 2, y: 2)
     }
     
     private func formatDate(_ date: Date) -> String {

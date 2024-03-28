@@ -14,15 +14,15 @@ struct ContentView: View {
         TabView{
             DashboardTabView()
                 .tabItem {
-                    Label("Dashboard", systemImage: "house.fill")
+                    Label("Home", systemImage: "house.fill")
             }
             EditExerciseTabView()
                 .tabItem {
-                    Label("Edit", systemImage: "square.and.pencil.circle.fill")
+                    Label("History", systemImage: "clock")
                 }
             ProfileTabView()
                 .tabItem {
-                    Label("Profile", systemImage: "person.crop.circle.fill")
+                    Label("More", systemImage: "ellipsis")
             }
         }
     }
