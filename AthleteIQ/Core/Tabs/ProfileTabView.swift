@@ -102,7 +102,7 @@ struct ProfileTabView: View {
     
     struct GoalsView: View {
         @Environment(\.modelContext) private var context
-        @Query(sort: \Goals.workoutsPerWeek) // You can choose a relevant sorting field
+        @Query(sort: \Goals.workoutsPerWeek)
         var goals: [Goals]
         
         @State private var workoutsPerWeek: String = ""
@@ -112,6 +112,8 @@ struct ProfileTabView: View {
         @State private var goalWeight: String = ""
         @State private var showingAlert = false
         @State private var alertMessage = ""
+        
+        @Environment(\.presentationMode) var presentationMode // Add this line
 
         var body: some View {
             Form {
@@ -165,7 +167,6 @@ struct ProfileTabView: View {
                 return
             }
 
-            // Check if goals already exist and update or create new ones
             if let existingGoals = goals.first {
                 existingGoals.workoutsPerWeek = workouts
                 existingGoals.cardioPerWeek = cardio
@@ -176,6 +177,7 @@ struct ProfileTabView: View {
                 do {
                     try context.save()
                     print("Goals updated.")
+                    presentationMode.wrappedValue.dismiss() // Dismiss the view after saving
                 } catch {
                     alertMessage = "Failed to update goals: \(error.localizedDescription)"
                     showingAlert = true
@@ -187,6 +189,7 @@ struct ProfileTabView: View {
                 do {
                     try context.save()
                     print("Goals saved.")
+                    presentationMode.wrappedValue.dismiss() // Dismiss the view after saving
                 } catch {
                     alertMessage = "Failed to save goals: \(error.localizedDescription)"
                     showingAlert = true
@@ -265,7 +268,3 @@ func cleanCSVString(_ string: String) -> String {
 }
 
 
-
-#Preview {
-    ProfileTabView()
-}
