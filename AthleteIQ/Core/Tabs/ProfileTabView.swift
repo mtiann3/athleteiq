@@ -16,63 +16,78 @@ struct ProfileTabView: View {
     var exercises: [Exercise]
     
     var totalSets: Int {
-           exercises.reduce(0) { $0 + $1.sets }
-       }
-       
-       var totalReps: Int {
-           exercises.reduce(0) { $0 + ($1.sets * $1.repetitions) }
-       }
+        exercises.reduce(0) { $0 + $1.sets }
+    }
+    
+    var totalReps: Int {
+        exercises.reduce(0) { $0 + ($1.sets * $1.repetitions) }
+    }
     
     var body: some View {
-        List{
-            Section(header:
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("AthleteIQ")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                            Text("Your Personal Fitness Assistant")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.vertical, 12)
-            ) {
-            }
-
-            Section("General") {
-                               VStack {
-                                   InfoRow(title: "Total Exercises Entered:", value: "\(exercises.count)")
-                                   InfoRow(title: "Total Sets Performed:", value: "\(totalSets)")
-                                   InfoRow(title: "Total Repetitions Performed:", value: "\(totalReps)")
-                               }
-                           }
-
-            Section("Export Data") {
-                VStack {
-                            
-                    ShareLink(item:generateCSV(exercises: exercises)!) {
-                                Label("Export CSV", systemImage: "list.bullet.rectangle.portrait")
-                            }
-                            
-                        }
-                        .padding()
-            }
-            
-            
-            Section("Help"){
-                Button(action: {
-//              Open helpsheetview
-                    isShowingItemSheet = true
-                }) {
-                    HStack{
-                        Text("App Instructions")
-                        Spacer()
-                        Image(systemName: "arrow.right")
+        NavigationView{
+            List{
+                Section(header:
+                            VStack(alignment: .leading, spacing: 4) {
+                    Text("ProgressPro")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .textCase(nil)
+                    
+                    Text("Your Personal Fitness Assistant")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+                    .padding(.vertical, 12)
+                ) {
+                }
+                Section(header:
+                            Text("Goals").font(.headline)
+                ) {
+                    NavigationLink(destination: GoalsView()) {
+                        Text("View/Edit My Goals")
+                            .font(.body)
+                            .bold()
+                    }
+                    
+                }
+                
+                Section("Statistics") {
+                    VStack {
+                        InfoRow(title: "Total Exercises Entered:", value: "\(exercises.count)")
+                        InfoRow(title: "Total Sets Performed:", value: "\(totalSets)")
+                        InfoRow(title: "Total Repetitions Performed:", value: "\(totalReps)")
+                        InfoRow(title: "Total Minutes of Cardio:", value: "1000 min")
                     }
                 }
-            
-               
-            }
                 
+                Section("Export Data") {
+                    VStack {
+                        
+                        ShareLink(item:generateCSV(exercises: exercises)!) {
+                            Label("Export CSV", systemImage: "list.bullet.rectangle.portrait")
+                        }
+                        
+                    }
+                    .padding()
+                }
+                
+                
+                Section("Help"){
+                    Button(action: {
+                        //              Open helpsheetview
+                        isShowingItemSheet = true
+                    }) {
+                        HStack{
+                            Text("App Instructions")
+                            Spacer()
+                            Image(systemName: "arrow.right")
+                        }
+                    }
+                    
+                    
+                }
+            }
+            
             
         }
         .sheet(isPresented: $isShowingItemSheet) {
@@ -84,6 +99,113 @@ struct ProfileTabView: View {
         
         
     }
+    
+    struct GoalsView: View {
+        @Environment(\.modelContext) private var context
+        @Query(sort: \Goals.workoutsPerWeek) // You can choose a relevant sorting field
+        var goals: [Goals]
+        
+        @State private var workoutsPerWeek: String = ""
+        @State private var minutesOfCardioPerWeek: String = ""
+        @State private var dailyCaloricIntake: String = ""
+        @State private var dailyHoursOfSleep: String = ""
+        @State private var goalWeight: String = ""
+        @State private var showingAlert = false
+        @State private var alertMessage = ""
+
+        var body: some View {
+            Form {
+                Section(header: Text("Set Your Goals").font(.headline)) {
+                    goalInput(label: "Workouts per week (1-7)", text: $workoutsPerWeek)
+                    goalInput(label: "Minutes of cardio per week", text: $minutesOfCardioPerWeek)
+                    goalInput(label: "Daily caloric intake (kcal)", text: $dailyCaloricIntake)
+                    goalInput(label: "Daily hours of sleep", text: $dailyHoursOfSleep)
+                    goalInput(label: "Goal weight (lbs)", text: $goalWeight)
+                }
+                
+                Section {
+                    Button(action: saveGoals) {
+                        Text("Save Goals")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
+            }
+            .navigationTitle("Update Goals")
+            .onAppear(perform: loadGoals)
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Invalid Input"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            }
+        }
+
+        private func goalInput(label: String, text: Binding<String>) -> some View {
+            HStack {
+                Text(label)
+                    .font(.body)
+                    .frame(width: 200, alignment: .leading)
+                TextField("", text: text)
+                    .keyboardType(label.contains("hours") ? .decimalPad : .numberPad)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            .padding(.vertical, 4)
+        }
+
+        private func saveGoals() {
+            guard let workouts = Int(workoutsPerWeek),
+                  let cardio = Int(minutesOfCardioPerWeek),
+                  let calories = Int(dailyCaloricIntake),
+                  let sleep = Int(dailyHoursOfSleep),
+                  let weight = Int(goalWeight) else {
+                alertMessage = "Please enter valid integer values for all goals."
+                showingAlert = true
+                return
+            }
+
+            // Check if goals already exist and update or create new ones
+            if let existingGoals = goals.first {
+                existingGoals.workoutsPerWeek = workouts
+                existingGoals.cardioPerWeek = cardio
+                existingGoals.calorieIntake = calories
+                existingGoals.hoursOfSleep = sleep
+                existingGoals.weight = weight
+                
+                do {
+                    try context.save()
+                    print("Goals updated.")
+                } catch {
+                    alertMessage = "Failed to update goals: \(error.localizedDescription)"
+                    showingAlert = true
+                }
+            } else {
+                let newGoals = Goals(workoutsPerWeek: workouts, cardioPerWeek: cardio, calorieIntake: calories, hoursOfSleep: sleep, weight: weight)
+                
+                context.insert(newGoals)
+                do {
+                    try context.save()
+                    print("Goals saved.")
+                } catch {
+                    alertMessage = "Failed to save goals: \(error.localizedDescription)"
+                    showingAlert = true
+                }
+            }
+        }
+
+        private func loadGoals() {
+            if let existingGoals = goals.first {
+                workoutsPerWeek = String(existingGoals.workoutsPerWeek)
+                minutesOfCardioPerWeek = String(existingGoals.cardioPerWeek)
+                dailyCaloricIntake = String(existingGoals.calorieIntake)
+                dailyHoursOfSleep = String(existingGoals.hoursOfSleep)
+                goalWeight = String(existingGoals.weight)
+            }
+        }
+    }
+
+
     
 }
 struct InfoRow: View {

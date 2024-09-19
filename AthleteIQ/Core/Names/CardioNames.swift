@@ -1,0 +1,21 @@
+let cardioNames = [
+    "Aqua Aerobics",
+    "Agility Drills",
+    "Battle Ropes",
+    "Bodyweight Exercises",
+    "Cycling",
+    "Dancing",
+    "High-Intensity Interval Training",
+    "Hiking",
+    "Jumping Jacks",
+    "Jumping Rope",
+    "Martial Arts",
+    "Skiing",
+    "Plyometrics",
+    "Rowing",
+    "Running",
+    "Stair Climbing",
+    "Swimming",
+    "Walking",
+    "Zumba"
+]

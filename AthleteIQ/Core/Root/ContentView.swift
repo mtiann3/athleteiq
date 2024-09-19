@@ -14,7 +14,15 @@ struct ContentView: View {
         TabView{
             DashboardTabView()
                 .tabItem {
-                    Label("Home", systemImage: "house.fill")
+                    Label("Dashboard", systemImage: "house.fill")
+            }
+            TrainingTabView()
+                .tabItem {
+                    Label("Training", systemImage: "figure.strengthtraining.traditional")
+            }
+            WellnessTabView()
+                .tabItem {
+                    Label("Wellness", systemImage: "heart.text.square.fill")
             }
             EditExerciseTabView()
                 .tabItem {
@@ -22,7 +30,7 @@ struct ContentView: View {
                 }
             ProfileTabView()
                 .tabItem {
-                    Label("More", systemImage: "ellipsis")
+                    Label("Profile", systemImage: "person.crop.circle.fill")
             }
         }
     }

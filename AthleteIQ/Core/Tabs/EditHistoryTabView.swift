@@ -1,14 +1,14 @@
 //
-//  EditExerciseTabView.swift
+//  EditHistoryTabView.swift
 //  AthleteIQ
 //
-//  Created by Mike Iannotti on 3/25/24.
+//  Created by Mike Iannotti on 9/19/24.
 //
 
 import SwiftUI
 import SwiftData
 
-struct EditExerciseTabView: View {
+struct EditHistoryTabView: View {
     @Environment(\.modelContext) var context
     @State private var isShowingItemSheet = false
     @Query(sort: \Exercise.date)
@@ -20,7 +20,7 @@ struct EditExerciseTabView: View {
             List {
                 Section(header:
             
-                                Text("Entry History")
+                                Text("Exercise History")
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                          
@@ -53,9 +53,9 @@ struct EditExerciseTabView: View {
                     VStack {
                         Spacer()
                         ContentUnavailableView(label: {
-                            Label("No Entries", systemImage: "chart.line.uptrend.xyaxis")
+                            Label("No Exercises", systemImage: "dumbbell.fill")
                         }, description: {
-                            Text("Go get after it!")
+                            Text("Start adding exercises to see your progress.")
                         }, actions: {
 //                            Button("Add Exercise") {
 //                                isShowingItemSheet = true

@@ -1,5 +1,4 @@
 let exerciseNames = [
-    // Barbell Exercises
     "Barbell Bench Press",
     "Barbell Bent Over Rows (Pendlay Rows)",
     "Barbell Bicep Curls",
@@ -14,13 +13,13 @@ let exerciseNames = [
     "Barbell Incline Bench Press",
     "Barbell Lunges",
     "Barbell Military Press (Overhead Press)",
+    "Barbell Preacher Curls",
     "Barbell Romanian Deadlifts",
     "Barbell Shrugs",
+    "Barbell Skull Crushers",
     "Barbell Squats (Back Squats)",
     "Barbell Stiff-Legged Deadlifts",
     "Barbell Upright Rows",
-    
-    // Cable Machine Exercises
     "Cable Bicep Curls",
     "Cable Chest Flyes",
     "Cable Crunches",
@@ -34,11 +33,10 @@ let exerciseNames = [
     "Cable Seated Rows",
     "Cable Shoulder Press",
     "Cable Tricep Extensions",
-    "Cable Woodchoppers",
-    
-    // Dumbbell Exercises
+    "Cable Tricep Pushdowns",
     "Dumbbell Bench Press",
     "Dumbbell Bicep Curls (Alternating)",
+    "Dumbbell Chest Flyes",
     "Dumbbell Deadlifts",
     "Dumbbell Decline Bench Press",
     "Dumbbell Decline Flyes",
@@ -54,32 +52,16 @@ let exerciseNames = [
     "Dumbbell Reverse Lunges",
     "Dumbbell Romanian Deadlifts",
     "Dumbbell Shrugs",
+    "Dumbbell Single Arm Chest Press",
     "Dumbbell Step-Ups",
     "Dumbbell Tricep Extensions",
     "Dumbbell Tricep Kickbacks",
     "Dumbbell Upright Rows",
-    
-    // Kettlebell Exercises
     "Kettlebell Bent Over Rows",
     "Kettlebell Clean and Press",
     "Kettlebell Goblet Squats",
     "Kettlebell Russian Swings",
     "Kettlebell Turkish Get-Ups",
-    
-    // Medicine Ball Exercises
-    "Medicine Ball Chest Pass",
-    "Medicine Ball Russian Twists",
-    "Medicine Ball Slams",
-    "Medicine Ball Squat Throws",
-    
-    // Resistance Band Exercises
-    "Band Pull-Aparts",
-    "Resistance Band Bicep Curls",
-    "Resistance Band Face Pulls",
-    "Resistance Band Leg Press",
-    "Resistance Band Tricep Extensions",
-    
-    // Barbell Variations
     "Close-Grip Bench Press",
     "Concentration Curls",
     "Diamond Push-Ups",
@@ -89,15 +71,11 @@ let exerciseNames = [
     "T-Bar Rows",
     "Trap Bar Deadlifts",
     "Wide-Grip Lat Pulldowns",
-    
-    // Cable Machine Variations
     "High Cable Curls",
     "Low Cable Rows",
     "Single Arm Cable Press",
     "Standing Cable Crunches",
     "Straight Arm Pulldowns",
-    
-    // Dumbbell Variations
     "Alternating Dumbbell Bench Press",
     "Dumbbell Front Squats",
     "Dumbbell Incline Flyes",
@@ -105,10 +83,10 @@ let exerciseNames = [
     "Dumbbell Side Raises",
     "Single Arm Dumbbell Rows",
     "Zercher Squats",
-    
-    // Smith Machine Exercises
+    "Machine Rear Delt Flyes",
     "Smith Machine Bench Press",
     "Smith Machine Bent Over Rows",
+    "Smith Machine Split Squats",
     "Smith Machine Calf Raises",
     "Smith Machine Close-Grip Bench Press",
     "Smith Machine Deadlifts",
@@ -126,8 +104,6 @@ let exerciseNames = [
     "Smith Machine Squats",
     "Smith Machine Stiff-Legged Deadlifts",
     "Smith Machine Upright Rows",
-    
-    // Additional Weighted Exercises
     "Chest Supported T-Bar Rows",
     "Dumbbell Farmer's Walk",
     "Dumbbell Goblet Lunges",
@@ -135,6 +111,8 @@ let exerciseNames = [
     "Dumbbell Side Lunges",
     "Landmine Rows",
     "Landmine Squats",
+    "Lat Pulldown",
+    "Lat Pulldown Reverse Grip",
     "Seated Leg Press",
     "Weighted Bulgarian Split Squats",
     "Weighted Chin-Ups",
@@ -144,10 +122,10 @@ let exerciseNames = [
     "Weighted Pistol Squats",
     "Weighted Planks",
     "Weighted Push Press",
+    "Weighted Pull-Ups",
     "Weighted Reverse Hyperextensions",
     "Weighted Sled Push/Pull",
     "Weighted Sledgehammer Swings",
-    "Weighted Sprints",
     "Weighted Sumo Squats",
     "Weighted Swiss Ball Leg Curls",
     "Weighted Swiss Ball Wall Squats",
