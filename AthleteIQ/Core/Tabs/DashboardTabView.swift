@@ -96,7 +96,7 @@ struct DashboardTabView: View {
         NavigationView {
             List  {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("ProgressPro")
+                    Text("AthleteIQ")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .textCase(nil)

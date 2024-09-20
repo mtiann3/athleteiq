@@ -21,7 +21,7 @@ struct EditExerciseTabView: View {
                 Section(header:
             
                                 Text("Entry History")
-                                    .font(.subheadline)
+                                    .font(.headline)
                                     .foregroundColor(.gray)
                          
                 ) {

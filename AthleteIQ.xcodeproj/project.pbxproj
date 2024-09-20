@@ -23,6 +23,8 @@
 		A841FB072C9CC01A004E092E /* CardioNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FB062C9CC01A004E092E /* CardioNames.swift */; };
 		A841FB092C9CC2BF004E092E /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FB082C9CC2BF004E092E /* Weight.swift */; };
 		A841FB0D2C9CC731004E092E /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FB0C2C9CC731004E092E /* Goals.swift */; };
+		A841FB0F2C9CDDDD004E092E /* AddFoodSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FB0E2C9CDDDD004E092E /* AddFoodSheet.swift */; };
+		A841FB112C9CDDEC004E092E /* AddSleepSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FB102C9CDDEC004E092E /* AddSleepSheet.swift */; };
 		A88305BC2BB252E700D1BCA9 /* EditExerciseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305BB2BB252E700D1BCA9 /* EditExerciseTabView.swift */; };
 		A88305BF2BB257A700D1BCA9 /* ExerciseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305BE2BB257A700D1BCA9 /* ExerciseNames.swift */; };
 		A88305C12BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88305C02BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift */; };
@@ -76,6 +78,8 @@
 		A841FB062C9CC01A004E092E /* CardioNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioNames.swift; sourceTree = "<group>"; };
 		A841FB082C9CC2BF004E092E /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		A841FB0C2C9CC731004E092E /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
+		A841FB0E2C9CDDDD004E092E /* AddFoodSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodSheet.swift; sourceTree = "<group>"; };
+		A841FB102C9CDDEC004E092E /* AddSleepSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepSheet.swift; sourceTree = "<group>"; };
 		A88305BB2BB252E700D1BCA9 /* EditExerciseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseTabView.swift; sourceTree = "<group>"; };
 		A88305BE2BB257A700D1BCA9 /* ExerciseNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseNames.swift; sourceTree = "<group>"; };
 		A88305C02BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExerciseProgressSheet.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				A88305CC2BB37AA900D1BCA9 /* UpdateExerciseSheet.swift */,
 				A806C06E2BB485D100B4522B /* ExportDataSheet.swift */,
 				A841FB042C9CBFDE004E092E /* AddCardioSheet.swift */,
+				A841FB0E2C9CDDDD004E092E /* AddFoodSheet.swift */,
+				A841FB102C9CDDEC004E092E /* AddSleepSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 				A88305CB2BB379A100D1BCA9 /* EditExerciseCell.swift in Sources */,
 				A88305BC2BB252E700D1BCA9 /* EditExerciseTabView.swift in Sources */,
 				A841FADF2C9C71F0004E092E /* Sleep.swift in Sources */,
+				A841FB112C9CDDEC004E092E /* AddSleepSheet.swift in Sources */,
 				A841FAFD2C9CA1A0004E092E /* TrainingTabView.swift in Sources */,
 				A841FB032C9CB99A004E092E /* EditHistoryTabView.swift in Sources */,
 				A841FB092C9CC2BF004E092E /* Weight.swift in Sources */,
@@ -435,6 +442,7 @@
 				A841FB072C9CC01A004E092E /* CardioNames.swift in Sources */,
 				A88305BF2BB257A700D1BCA9 /* ExerciseNames.swift in Sources */,
 				A841FB052C9CBFDE004E092E /* AddCardioSheet.swift in Sources */,
+				A841FB0F2C9CDDDD004E092E /* AddFoodSheet.swift in Sources */,
 				A841FADD2C9C7152004E092E /* Food.swift in Sources */,
 				A800EDD02BB1DFF9009B9209 /* Exercise.swift in Sources */,
 				A88305C12BB259D100D1BCA9 /* ViewExerciseProgressSheet.swift in Sources */,

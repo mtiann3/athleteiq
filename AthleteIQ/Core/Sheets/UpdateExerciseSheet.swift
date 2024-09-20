@@ -40,17 +40,18 @@ struct UpdateExerciseSheet: View {
                         .keyboardType(.decimalPad)
                 }
                 HStack{
-                    Text("Sets:")
-                        .bold()
-                    TextField("Number", value: $exercise.sets, formatter: NumberFormatter())
-                        .keyboardType(.decimalPad)
-                }
-                HStack{
                     Text("Repetitions:")
                         .bold()
                     TextField("Number", value: $exercise.repetitions, formatter: NumberFormatter())
                         .keyboardType(.decimalPad)
                 }
+                HStack{
+                    Text("Sets:")
+                        .bold()
+                    TextField("Number", value: $exercise.sets, formatter: NumberFormatter())
+                        .keyboardType(.decimalPad)
+                }
+                
             }
             .navigationTitle("Update Exercise")
             .navigationBarTitleDisplayMode(.large)

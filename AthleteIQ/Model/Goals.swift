@@ -13,15 +13,13 @@ class Goals {
     var cardioPerWeek: Int
     var calorieIntake: Int
     var hoursOfSleep: Int
-    var weight: Int
     
     
-    init(workoutsPerWeek: Int, cardioPerWeek: Int, calorieIntake: Int, hoursOfSleep: Int, weight: Int) {
+    init(workoutsPerWeek: Int, cardioPerWeek: Int, calorieIntake: Int, hoursOfSleep: Int) {
         self.workoutsPerWeek = workoutsPerWeek
         self.cardioPerWeek = cardioPerWeek
         self.calorieIntake = calorieIntake
         self.hoursOfSleep = hoursOfSleep
-        self.weight = weight
     }
     
 }
