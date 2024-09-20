@@ -102,7 +102,7 @@ struct TrainingTabView: View {
                             .bold()
                     }
                 }
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         isShowingCardioSheet = true
                     }) {
